@@ -40,6 +40,10 @@ router.post('/submitName', async (req, res) => {
       error: e.firstError()
     });
   }
+
+  // Now we can be sure nameSubmission is valid
+  // If you need a pure JS verison of the valid object
+  // we can call nameSubmission.toObject()
 });
 ```
 

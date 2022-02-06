@@ -1,6 +1,5 @@
 let { should } = require('chai');
 const { Validator, Schema } = require('../index');
-// const { showDiff } = require("chai/lib/chai/config");
 
 // Wrap objects
 should = should();
@@ -144,6 +143,7 @@ describe('Basic type checks', () => {
   }
 });
 
+// TODO: Add validation tests from mongoose.js to make sure everything works the same
 
 
 // let numberSchema = new Schema({
