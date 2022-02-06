@@ -32,7 +32,7 @@ const ValidNameSchema = new Schema({
   }
 });
 
-const SubmitNameRequest = new Validator(ValidNameSchema);
+const SubmitNameRequest = new Validator.compile(ValidNameSchema);
 
 router.post('/submitName', async (req, res) => {
   let nameSubmission = new SubmitNameRequest(req.body);
