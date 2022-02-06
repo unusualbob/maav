@@ -8,7 +8,10 @@
     "coverage": "nyc --reporter=text mocha"
   },
   "keywords": [
-    "mongoose"
+    "mongoose",
+    "schema",
+    "validation",
+    "json"
   ],
   "author": "Rob Riddle <unusualbob>",
   "license": "BSD-3-Clause-Attribution",
