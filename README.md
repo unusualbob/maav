@@ -63,3 +63,9 @@ router.post('/submitName', async (req, res) => {
   * Just try it, see if it works. If not, and you really want to, you could always open an issue 
   to ask about it. If it's a good idea maybe I'll work on it. Also, I will accept pull
   requests which are not stupid ideas either.
+
+## Development notes
+For ease of use there are some `npm` commands available for testing different mongoose versions.
+* `npm run m5` - Installs mongoose@5
+* `npm run m6` - Installs mongoose@6
+* `npm run test-all` - Installs 5.x, runs tests, installs 6.x, runs tests

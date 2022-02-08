@@ -1,11 +1,21 @@
-const mongoose = require('mongoose');
+let mongoose;
+
+try {
+  mongoose = require('mongoose');
+} catch (e) {
+  if (e.code === 'MODULE_NOT_FOUND') {
+    throw new Error('Cannot find module \'mongoose\'\nCause: maav requires a peer of mongoose@>5 but none is installed. You must install peer dependencies yourself.');
+  }
+}
+
 const Schema = require('./lib/schema');
 const Validator = require('./lib/validator');
-
+const Helpers = require('./lib/helpers');
 
 module.exports = {
   Schema,
-  Validator
+  Validator,
+  Helpers
 };
 
 /**
@@ -42,7 +52,7 @@ Object.defineProperty(mongoose.Error.ValidationError.prototype, 'firstError', {
   value: function() {
     for (let path in this.errors) {
       // This will break on the first valid error in the 'errors' object
-      if (this.errors.hasOwnProperty(path)) {
+      if (Object.prototype.hasOwnProperty.call(this.errors, path)) {
         return Object.assign({}, { path, message: this.errors[path].message });
       }
     }

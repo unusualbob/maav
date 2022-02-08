@@ -48,17 +48,6 @@ async function generateBasicTest({
   }
 }
 
-async function wrapTest(testFn) {
-  let baseErrorStack = new Error().stack.split('\n').slice(2).join('\n');
-
-  try {
-    await testFn();
-  } catch (e) {
-    e.stack = `${e.stack.split('\n').slice(0, -2).join('\n')}${baseErrorStack}`;
-    throw e;
-  }
-}
-
 function checkFieldExists(field) {
   return ({ params }) => {
     should.exist(params[field]);
@@ -92,6 +81,11 @@ describe('Basic type checks', () => {
     type: Date,
     def: new Date(),
     data: { aField: new Date('2022-02-06') }
+  }, {
+    title: 'Date-String',
+    type: Date,
+    def: new Date(),
+    data: { aField: new Date('2022-02-06').toISOString() }
   }];
 
   typeTests.forEach(generateRequiredTests);
@@ -117,14 +111,14 @@ describe('Basic type checks', () => {
         async () => {
           return generateBasicTest({ type, required, data, keys });
         }
-      )
+      );
 
       it(
         'should not error and should not be empty if nothing is passed in and nothing is required and a default is set',
         async () => {
           return generateBasicTest({ type, def, keys });
         }
-      )
+      );
 
       it(
         'should not error and should not be empty if nothing is passed in and something is required and a default is set',
